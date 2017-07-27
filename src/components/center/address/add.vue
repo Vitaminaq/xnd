@@ -11,13 +11,13 @@
         </div>
         <div id="content">
             <div class="addlist">
-                <label>收货人</label><input type="text" @keyup="isname" name="" v-model="name" />
+                <label>收货人</label><input type="text" @focus="hidit2" @blur="showit2" @keyup="isname" name="" v-model="name" />
             </div>
            <div class="licut">
        
             </div>
             <div class="addlist">
-               <label>联系电话</label><input type="text" @keyup="isphone" name="" v-model="phone"/>
+               <label>联系电话</label><input type="text" @focus="hidit2" @blur="showit2" @keyup="isphone" name="" v-model="phone"/>
             </div>
            <div class="licut">
        
@@ -31,19 +31,19 @@
        
            </div>
            <div id="txtarea">
-            <textarea placeholder="请填写详细地址，如街道、楼牌号等" @keyup="isdetail" v-model="detail"></textarea>
+            <textarea placeholder="请填写详细地址，如街道、楼牌号等" @focus="hidit2" @blur="showit2" @keyup="isdetail" v-model="detail"></textarea>
            </div>
            <div class="licut">
        
            </div>
            <vue-area :props-show="show" :props-result="result" v-on:result="areaResult"></vue-area>
-           <div id="save" @click.stop="save">
+           <div id="save" v-show="barhid" @click.stop="save">
              <div id="savecontent">
                 <span>保存</span>
              </div>
           </div>
         </div>
-       <bottombar></bottombar> 
+       <bottombar v-show="barhid"></bottombar> 
     </div>
 	
 </template>
@@ -66,7 +66,8 @@ export default {
       phone: '',
       detail: '',
       sex: 0,
-      state: true
+      state: true,
+      barhid: true
     }
   },
   created: function () {
@@ -78,11 +79,11 @@ export default {
       this.result = result
     },
     save () {
-      if (this.state === true) {
-        this.state = false
-        if (!(/^[a-zA-Z\u4e00-\u9fa5]+$/.test(this.name)) || !(/^1\d{10}$/.test(this.phone)) || !(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
-          utils.toToast('请填写正确的信息')
-        } else {
+      if (!(/^[a-zA-Z\u4e00-\u9fa5]+$/.test(this.name)) || !(/^1\d{10}$/.test(this.phone)) || !(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
+        utils.toToast('请填写正确的信息')
+      } else {
+        if (this.state === true) {
+          this.state = false
           request.post(this.$route, {
             name: this.name,
             phone: this.phone,
@@ -92,7 +93,7 @@ export default {
             detail: this.detail}, function (data) {
               utils.toToast('保存成功')
               if (this.$route.query.id1 === 'markadd1') {
-                this.$router.push({path: '/preorder'})
+                this.$router.push({path: '/preorder?goods_car_id=' + this.$route.query.goods_car_id})
               } else {
                 this.$router.push({path: '/person/address'})
               }
@@ -118,6 +119,12 @@ export default {
       if (!(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
         utils.toToast('请输入正确的详细地址')
       }
+    },
+    showit2: function () {
+      this.barhid = true
+    },
+    hidit2: function () {
+      this.barhid = false
     }
   }
 }

@@ -10,13 +10,13 @@
   	   
         </div>
         <div class="addlist">
-        	<label>收货人</label><input type="text" @keyup="isname" name="" v-model="name" />
+        	<label>收货人</label><input type="text" @focus="hidit1" @blur="showit" @keyup="isname" name="" v-model="name" />
         </div>
         <div class="licut">
   	   
         </div>
         <div class="addlist">
-        	<label>联系电话</label><input type="text" @keyup="isphone" name="" v-model="phone"/>
+        	<label>联系电话</label><input type="text" @focus="hidit1" @blur="showit" @keyup="isphone" name="" v-model="phone"/>
         </div>
         <div class="licut">
   	   
@@ -33,18 +33,18 @@
   	   
         </div>
         <div id="txtarea">
-        	<textarea placeholder="请填写详细地址，如街道、楼牌号等" @keyup="isdetail" v-model="detail"></textarea>
+        	<textarea placeholder="请填写详细地址，如街道、楼牌号等" @focus="hidit1" @blur="showit" @keyup="isdetail" v-model="detail"></textarea>
         </div>
         <div class="licut">
   	   
         </div>
        <vue-area :props-show="show" :props-result="result" v-on:result="areaResult"></vue-area>
-        <div id="save1" @click.stop="save">
+        <div id="save1" v-show="barhid" @click.stop="save">
           <div id="savecontent">
             <span>保存</span>
           </div>
       </div>
-      <bottombar></bottombar>
+      <bottombar v-show="barhid"></bottombar>
     </div>
 	
 </template>
@@ -76,7 +76,8 @@ export default {
       areacode: '',
       citycode: '',
       provincecode: '',
-      state: true
+      state: true,
+      barhid: true
     }
   },
   created: function () {
@@ -105,16 +106,16 @@ export default {
       this.hidit = !this.hidit
     },
     save: function () {
-      if (this.state === true) {
-        this.state = false
-        if (this.result !== null) {
-          this.citycode = this.result.city.code
-          this.areacode = this.result.area.code
-          this.provincecode = this.result.province.code
-        }
-        if (!(/^[a-zA-Z\u4e00-\u9fa5]+$/.test(this.name)) || !(/^1\d{10}$/.test(this.phone)) || !(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
-          utils.toToast('请填写正确的信息')
-        } else {
+      if (this.result !== null) {
+        this.citycode = this.result.city.code
+        this.areacode = this.result.area.code
+        this.provincecode = this.result.province.code
+      }
+      if (!(/^[a-zA-Z\u4e00-\u9fa5]+$/.test(this.name)) || !(/^1\d{10}$/.test(this.phone)) || !(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
+        utils.toToast('请填写正确的信息')
+      } else {
+        if (this.state === true) {
+          this.state = false
           request.put(this.$route, {
             addr_id: this.addr_id,
             rootName: 'saveedit',
@@ -148,6 +149,12 @@ export default {
       if (!(/^[\u0391-\uFFE5\d]+$/.test(this.detail))) {
         utils.toToast('请输入正确的详细地址')
       }
+    },
+    showit: function () {
+      this.barhid = true
+    },
+    hidit1: function () {
+      this.barhid = false
     }
   }
 }

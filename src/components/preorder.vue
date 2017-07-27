@@ -87,7 +87,7 @@ export default {
     }, function (data) {
       if (data.code && data.code === 11) {
         utils.toToast('没有收货地址')
-        this.$router.push({path: '/person/address/add?id1=markadd1'})
+        this.$router.push({path: '/person/address/add?id1=markadd1&goods_car_id=' + this.$route.query.goods_car_id})
       } else {
         this.ordercontent = data.rcv_info.msg
         this.order_info_stime = data.orders_info.send_time

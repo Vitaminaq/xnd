@@ -70,7 +70,7 @@ var urls = {
 } */
 
 var getUrl = function (router, data) {
-  data.uid = localStorage.getItem('uid')
+  data.uid = localStorage.getItem('id')
   var routerName = data.rootName ? data.rootName : router.name
   data.rootName = undefined
   return preFix + urls[routerName].format(data)
@@ -89,7 +89,7 @@ var request = function (method, router, data, successFun, errorFun) {
     method: method,
     url: getUrl(router,data),
     data: data,
-    timeout: 20000,
+    timeout: 5000,
     headers: {
       'Authorization': localStorage.getItem('token')
     }
