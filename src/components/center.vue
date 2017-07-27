@@ -103,7 +103,7 @@ export default {
   },
   created: function () {
     this.$router.name = this.$route.name
-    this.imgurl = localStorage.getItem('headimgurl')
+    this.imgurl = this.$route.query.headerimgurl
     request.get(this.$router, {}, function (data) {
       this.data = data
       // console.log(this.data)
