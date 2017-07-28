@@ -6,6 +6,7 @@ import router from './router'
 import VueScroller from 'vue-scroller'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Toast from 'vue-easy-toast'
+
 router.beforeEach((to, from, next) => {
   if (to.query.uid && to.query.token) {
     var uids = to.query.uid

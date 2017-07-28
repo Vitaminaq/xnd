@@ -33,7 +33,6 @@
     import bottombar from '../components/bottombar'
     import Toast from 'vue-easy-toast'
     import request from '@/common/request'
-
     export default{
       name: 'home',
       components: {
@@ -48,7 +47,10 @@
           goodsId: 0,
           currentTime: 0,
           currentPage: 1,
-          limit: 8
+          limit: 8,
+          item1: [],
+          minurl1: '',
+          minurls1: []
         }
       },
       created: function () {

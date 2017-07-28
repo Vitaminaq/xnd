@@ -47,7 +47,9 @@ var urls = {
   updateCart: '/v1/user/{uid}/goods_car/{goods_car_id}',
   preorder: '/v1/user/{uid}/order/preOrder?goods_car_ids={goods_car_ids}&addr_id={addr_id}',
   coupon:'/v1/user/{uid}/coupon?goods_car_ids={goods_car_ids}&code={code}&agent_id={agent_id}',
-  pay:'/v1/user/{uid}/order',
+  createorder:'/v1/user/{uid}/order',
+  pay: '/v1/js_api_params',
+  paying: '/v1/user/{uid}/order/combine',
   orderDetail:'/v1/user/{uid}/order/order_id={order_id}',
   order:'/v1/user/{uid}/order?status={status}&page={page}&limit={limit}',
   cancelorder:'/v1/user/{uid}/order/{order_id}/cancel',
@@ -70,7 +72,7 @@ var urls = {
 } */
 
 var getUrl = function (router, data) {
-  data.uid = localStorage.getItem('id')
+  data.uid = localStorage.getItem('uid')
   var routerName = data.rootName ? data.rootName : router.name
   data.rootName = undefined
   return preFix + urls[routerName].format(data)
