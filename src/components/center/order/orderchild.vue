@@ -17,7 +17,7 @@
       <scroller
       :on-refresh="refresh"
       :on-infinite="infinite" class="scroller"  ref="my_scroller" :class="mergewillpay ? 'scroller1' : 'scroller2'">
-     	<ul>
+     	<ul :class="mergewillpay ? 'ul1' : 'ul2'">
      		<li v-for="item in items">
      			<div class="detail" @click="tologistic(item.order_info.order_id)">
      				<div class="didangid"><span>订单号</span><span>：</span><span>{{item.order_info.order_num}}</span></div>
@@ -81,7 +81,7 @@
                 </div>
       <div id="mergetxt">
         <span id="mergenum">共{{totalNum}}件商品</span>
-        <span id="mergemoney">合计：&yen;{{totalMoney}}</span><span>(含运费￥0.00)</span>
+        <span id="mergemoney">合计：&yen;{{totalMoney}}</span><span id="mergerdeliver">(含运费￥0.00)</span>
       </div>
       <div class="licut">
        </div>
@@ -504,11 +504,6 @@ export default {
 	padding: 0;
 	margin: 0;
 }
-.scroller
-{
-  padding-top:0.05rem;
-  margin-top:0.05rem;
-}
 .scroller1
 {
   height:11rem;
@@ -868,7 +863,7 @@ ul .right
 #mergecontent
 {
   position: fixed;
-  bottom: 1.58666rem;
+  bottom: 1.6222rem;
   font-size: 0.4rem;
   background-color: white; 
   width: 100%;
@@ -880,16 +875,18 @@ ul .right
 }
 #mergetxt span
 {
-  padding-top: 0.213333rem;
-  display: inline-block;
+  margin:0;
+  float: left;
 }
 #mergenum
 {
-  width: 25%;
+  padding-top: 0.213333rem;
+  width: 30%;
 }
 #mergemoney
 {
-  width: 40%;
+  padding-top: 0.213333rem;
+  width: 42%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -905,5 +902,14 @@ ul .right
   float: right;
   margin-right: 0.573333rem;
   padding-top: 0.173333rem;
+}
+#mergerdeliver
+{
+  padding-top: 0.253333rem;
+  font-size: 0.333333rem;
+}
+.ul1
+{
+  margin-bottom: 1.2rem;
 }
 </style>

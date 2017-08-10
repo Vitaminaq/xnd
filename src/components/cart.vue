@@ -20,19 +20,19 @@
               <div class="contentcar" @click="toDetail(item)">
                 <h2 class="name">{{item.goods_info.title}}</h2>
                 <p class="desc">{{item.goods_info.description}}</p>
-                <p class="price-line"><span class="price"><span class="attach">&yen;</span>{{item.goods_info.price}}<span class="attach">/{{item.goods_info.unit}}</span></span><span class="old-price">&yen;{{item.goods_info.origin_price}}/{{item.unit}}</span></p>
+                <p class="price-line"><span class="price"><span class="attach">&yen;</span>{{item.goods_info.price}}<span class="attach">/{{item.goods_info.unit}}</span></span><span class="old-price">&yen;{{item.goods_info.origin_price}}/{{item.goods_info.unit}}</span></p>
                 <p class="deliver-time">{{item.goods_info.send_time}}</p>
               </div>
               <div class="amount">
                 <span class="btn-minus" @click.stop="changeAmount(item,0)"></span>
-                <input class="amount-num" type="number"  v-model="item.goods_num" @keyup="maxnum(item.goods_car_id)" @blur="changenumfast(item.goods_car_id)" @focus="hidits"></input>
+                <input class="amount-num" type="number"  v-model="item.goods_num" @keyup="maxnum(item.goods_car_id)" @blur="changenumfast(item.goods_car_id)"></input>
                 <span class="btn-plus" @click.stop="changeAmount(item,1)"></span>
               </div>      
             </li>
           </ul>
         </scroller>    
         </div>
-        <div class="toPay">
+        <div class="toPay" v-show="hidit">
           <div class="paycontent">
             <div class="chooseAll" @click="chooseAll" :class="selectAll ? 'select' : 'unselect'"></div>
             <div class="chooseAlltxt"><p>全选</p></div>
@@ -43,7 +43,7 @@
           </div>
           
         </div>  
-        <bottombar></bottombar>
+        <bottombar v-show="hidit"></bottombar>
     </div>    
 </template>
 <script>
@@ -64,7 +64,8 @@ export default {
       currentPage: 1,
       limit: 8,
       screenHeight: '',
-      screenHeight1: ''
+      screenHeight1: '',
+      hidit: true
     }
   },
   components: {
@@ -249,9 +250,6 @@ export default {
           }
         }
       }
-    },
-    hidits: function () {
-      this.hidit = false
     }
   }
 }
@@ -307,7 +305,7 @@ export default {
     float: left;
     height: 100%;
     width: 34.64%;
-    margin-right: 2.666667%;
+    margin-right: 1%;
   }
   .icon .choose-btn{
     display: inline-block;
@@ -380,7 +378,7 @@ export default {
     display: inline-block;
     float: left;
     height: 100%;
-    width: 34.59%;
+    width: 36.2%;
     padding-right: 2.9333%;
     letter-spacing: 0;
     font-size: 0;
@@ -397,11 +395,12 @@ export default {
     text-overflow: ellipsis;
   }
   .contentcar .desc{
-    font-size: .28rem;
+    font-size: .33rem;
     padding-top: 0.145rem;
     display: inline-block;
     width: 100%;
     color: rgba(0,0,0,0.6);
+    padding-bottom: 0.07rem;
     /*margin-bottom: .293333rem;*/
     height: 0.32rem;
     white-space: nowrap;
@@ -412,7 +411,7 @@ export default {
     display: inline-block;
     width: 100%;
     height: 0.373333rem;
-    padding-top: 0.27rem;
+    padding-top: 0.15rem;
     /*margin-bottom: .106667rem*/
   }
   .contentcar .price{
@@ -436,7 +435,7 @@ export default {
     height: 0.32rem;
     width: 100%;
     text-overflow: ellipsis;
-    font-size: .25333rem;
+    font-size: .27rem;
   }
   .amount{
     display: inline-block;

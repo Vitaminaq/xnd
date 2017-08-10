@@ -44,10 +44,10 @@
         this.$router.name = this.$route.name
         if (localStorage.getItem('uid') || localStorage.getItem('token')) {
           request.get(this.$router, {rootName: 'cartAll'}, function (data) {
-            if (data.num < 100) {
+            if (data.num < 1000) {
               this.cartAll = data.num
             } else {
-              this.cartAll = 99
+              this.cartAll = 999
             }
           }.bind(this))
         }
@@ -71,7 +71,11 @@
               }, 1000)
               request.get(this.$router, {rootName: 'cartAll'}, function (data) {
                 // console.log(data.num)
-                this.cartAll = data.num
+                if (data.num < 1000) {
+                  this.cartAll = data.num
+                } else {
+                  this.cartAll = 999
+                }
               }.bind(this))
               // this.cartAll++
             } else {
@@ -108,7 +112,7 @@
         height: 100%;
     }
     .btn-bar-wrap .btn .btn-title{
-        font-size: .266667rem;
+        font-size: .36rem;
         text-align: center;
         line-height: .266667rem;
         margin-top:.24rem;

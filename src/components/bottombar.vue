@@ -62,7 +62,7 @@
     background-image: url("../assets/info-active.png");
   }
   .tab-item p{
-    font-size: .24rem;
+    font-size: .36rem;
     font-family: "Microsoft YaHei UI";
     letter-spacing: 0;
     position: relative;

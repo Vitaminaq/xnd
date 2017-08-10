@@ -16,7 +16,9 @@
           <div class="content">
             <div class="titlediv"><h2 class="indexname">{{item.title}}</h2></div>
             <p class="desc">{{item.description}}</p>
-            <p class="old-price"><span class="old-attach">&yen;</span>{{item.origin_price}}<span class="old-attach">/{{item.unit}}</span></p>
+            <p class="old-price"><span class="old-attach">&yen;</span>{{item.origin_price}}<span class="old-attach">/{{item.unit}}</span>
+            
+            </p>
             <p class="price"><span class="attach">&yen;</span>{{item.price}}<span class="attach">/{{item.unit}}</span></p>
             <a class="toCart" :class="item.start_time < currentTime && item.end_time > currentTime ? 'onsale' : 'unsale'"></a>
           </div>
@@ -193,12 +195,12 @@
     /*-webkit-box-orient: vertical;
     -webkit-line-clamp: 2;*/
     overflow: hidden;
-    font-size: 0.44rem;
+    font-size: 0.48rem;
     line-height: 0.62rem;
     color: #000;
   }
   .content .desc{
-    font-size: 0.226rem;
+    font-size: 0.32rem;
     color: rgba(0,0,0,0.6);
     padding-top: 0.2rem;
     white-space: nowrap;
@@ -206,18 +208,16 @@
     text-overflow: ellipsis;
   }
   .old-price{
-    text-decoration: line-through;
-    font-size: 0.306667rem;
+    font-size: 0.35rem;
     color: rgba(0,0,0,0.6);
-    padding-top: 0.373333rem;
-  }
-  .old-price .old-attach
-  {
-    font-size: 0.1rem;
+    padding-top: 0.346667rem;
+    text-decoration: line-through;
+    height: auto;
+    z-index: 300;
   }
   .price{
     padding-top: 0.133333rem;
-    font-size: 0.386667rem;
+    font-size: 0.46rem;
     font-weight: bold;
     color: #32ab42;
   }
@@ -232,15 +232,16 @@
     left: 50%;
     bottom: 2px;
     transform: translate(-50%,0);
-    width: 73.2%;
     height: 0.64rem;
     /*background-size: 100% 100%;*/
   }
   .toCart.onsale{
-    background: url("../assets/sale.png") no-repeat ;
-    background-size: 100% 100%;
+    width: 2.453333rem;
+    background: url("../assets/addcar.png") no-repeat ;
+    background-size: 2.453333rem 0.64rem;
   }
   .toCart.unsale{
+    width: 73.2%;
     background: url("../assets/unsale.png") no-repeat ;
     background-size: 100% 100%;
   }

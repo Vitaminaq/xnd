@@ -177,7 +177,7 @@ export default {
 }
 #mestxt
 {
-  font-size: 0.306667rem;
+  font-size: 0.4rem;
   padding-top: 0.346667rem;
 }
 .licut
