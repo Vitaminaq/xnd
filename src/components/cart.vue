@@ -14,7 +14,7 @@
                 <div class="icon-logo" @click="toDetail">
                   <div class="tag" :class="{presale: !item.state,offsale:item.state}" v-show="item.goods_info.status_text"></div>
                   <div class="tag12" v-show="item.goods_info.status_text"><div class="tag22">{{item.goods_info.status_text}}</div></div>
-                  <img :src="item.goods_info.goods_img">
+                  <img :src="item.goods_info.goods_car_img">
                 </div>  
               </div>
               <div class="contentcar" @click="toDetail(item)">
@@ -367,7 +367,7 @@ export default {
       vertical-align: middle;
       height: 0.8rem;
       width: 0.8rem;
-      font-size: 0.226667rem;
+      font-size: 0.26rem;
       letter-spacing: 0;
   }
   .icon-logo img{
@@ -523,13 +523,13 @@ export default {
     font-size: .346667rem;
     margin-left: 4.53333%;
     padding-top: .453333rem;
-    font-size: 0.38rem;
+    font-size: 0.40rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .pay-sum-wrap .pay-sum{
-    font-size: 0.39rem;
+    font-size: 0.40rem;
     font-weight: bold;
   }
   .pay-sum-wrap .deliver{

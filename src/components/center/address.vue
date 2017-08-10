@@ -31,13 +31,13 @@
        </ul>
     </scroller>
        <!--添加新地址按钮-->
-       <router-link to="/person/address/add">
-       <div id="add2">
+      
+       <div id="add2" @click="toadd">
           <div id="add2content">
             <span> + 添加新地址</span>
           </div>
        </div>
-       </router-link>
+
        <bottombar></bottombar>
 </div>
 
@@ -70,6 +70,13 @@ export default {
     this.$router.name = this.$route.name
   },
   methods: {
+    toadd: function () {
+      if (!this.$route.query.goods_car_id) {
+        this.$router.push({path: '/person/address/add'})
+      } else {
+        this.$router.push({path: '/person/address/add?&goods_car_id1=' + this.$route.query.goods_car_id})
+      }
+    },
     // 跳转编辑地址界面
     toedit: function (addid) {
       if (!this.$route.query.goods_car_id) {

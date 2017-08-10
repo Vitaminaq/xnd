@@ -147,7 +147,7 @@
         display: table-cell;
         vertical-align: middle;
         letter-spacing: 0;
-        font-size: 0.2266rem;
+        font-size: 0.27rem;
         line-height: 0.4666rem;
         color: #fff;
     }

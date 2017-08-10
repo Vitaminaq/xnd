@@ -164,7 +164,7 @@
     height: 0.533rem;
     position: absolute;
     right: 0.12rem;
-    bottom: 0.346rem;
+    bottom: 0.133333rem;
     background-image: url("../assets/sale-time.png");
     background-size: 100% 100%;
     color: #fff;
@@ -195,7 +195,7 @@
     /*-webkit-box-orient: vertical;
     -webkit-line-clamp: 2;*/
     overflow: hidden;
-    font-size: 0.48rem;
+    font-size: 0.44rem;
     line-height: 0.62rem;
     color: #000;
   }

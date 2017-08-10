@@ -93,7 +93,8 @@ export default {
       noaddtoast: false,
       coupontxt: '',
       txtsh: true,
-      coupond: ''
+      coupond: '',
+      cprice: ''
     }
   },
   created: function () {
@@ -155,6 +156,7 @@ export default {
             this.coupon = data.msg.id
             this.coupond = data.msg.coupon_text
             this.txtsh = false
+            this.price_info[2].value = data.msg.coupon_all_price
             utils.toToast('使用成功')
           } else {
             this.idnum = ''
@@ -178,9 +180,8 @@ export default {
           coupon_id: this.coupon
         }, function (data) {
           this.item = data
-          if (data.code === 13) {
-            utils.toToast('数量超出库存')
-            this.$router.push({path: '/cart'})
+          if (data.msg) {
+            utils.toToast('data.msg')
           } else {
             if (typeof window.WeixinJSBridge === 'undefined') {
               if (document.addEventListener) {

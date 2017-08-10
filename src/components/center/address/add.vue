@@ -1,12 +1,10 @@
 <template>
     <div id="main">
     <headerbar></headerbar>
-    <router-link to="/person/address">
-    	<div id="back2">
+    	<div id="back2" @click="back">
            <img class="arrowwh" src="../../../assets/back.png">
            <span>我的地址</span>
       </div>
-    </router-link>
         <div class="licut">
   	   
         </div>
@@ -119,8 +117,10 @@ export default {
             area: this.result.area.code,
             detail: this.detail}, function (data) {
               utils.toToast('保存成功')
-              if (this.$route.query.id1 === 'markadd1') {
+              if (this.$route.query.goods_car_id) {
                 this.$router.push({path: '/preorder?goods_car_id=' + this.$route.query.goods_car_id})
+              } else if (this.$route.query.goods_car_id1) {
+                this.$router.push({path: '/person/address?&goods_car_id=' + this.$route.query.goods_car_id1})
               } else {
                 this.$router.push({path: '/person/address'})
               }
@@ -147,6 +147,13 @@ export default {
     },
     fontcolor: function () {
       document.getElementById('ta').style.color = 'black'
+    },
+    back: function () {
+      if (this.$route.query.goods_car_id1) {
+        this.$router.push({path: '/person/address?&goods_car_id=' + this.$route.query.goods_car_id1})
+      } else {
+        this.$router.push({path: '/person/address'})
+      }
     }
   }
 }

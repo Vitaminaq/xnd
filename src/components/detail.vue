@@ -34,7 +34,7 @@
         </p>
         <p class="start-time">{{goodsDetail.send_time}}</p>
     </div>
-    <div class="btn-arrow">
+    <div class="btn-arrow" v-show="this.hd">
         <img src="../assets/detail/bottom-arrow.png">
     </div>
     <div class="item-detail">
@@ -92,20 +92,19 @@
           miu1: '',
           miao1: '',
           cuttimestring: '',
-          src: ''
+          scroll: '',
+          hd: true
         }
       },
-      watch: {
-        scr: function (newval, oldval) {
-          if (newval > 0) {
-            console.log('fdsfd')
-          }
-        }
-      },
+      // watch: {
+      //   scr: function (newval, oldval) {
+      //     if (newval === 0) {
+      //       console.log('fdsfd')
+      //     }
+      //   }
+      // },
       // props: ['goodsId'],
       created: function () {
-        console.log(document.body.scrollTop)
-        console.log(window.onscroll)
         var that = this
         this.$router.name = this.$route.name
         this.goodsId = this.$route.query.goodsId
@@ -138,15 +137,26 @@
           setInterval(function () { that.cuttime() }, 1000)
         }.bind(this))
       },
+      // mounted: function () {
+      //   const that = this
+      //   window.onscroll = () => {
+      //     return (() => {
+      //       that.scr = document.body.scrollTop
+      //     })()
+      //   }
+      // },
       mounted: function () {
-        const that = this
-        window.onscroll = () => {
-          return (() => {
-            that.scr = document.body.scrollTop
-          })()
-        }
+        window.addEventListener('scroll', this.menu)
       },
       methods: {
+        menu: function () {
+          this.scroll = document.body.scrollTop
+          if (this.scroll > 0) {
+            this.hd = false
+          } else {
+            this.hd = true
+          }
+        },
         cuttime: function () {
           if (this.miao1 > 0) {
             this.miao1--
@@ -335,26 +345,33 @@
     {
       margin:0;
       padding: 0;
-      width: 0.8rem;
-      height: 0.8rem;
+      width: 0.4rem;
+      height: 0.4rem;
       position: fixed;
-      left: 4.5rem;
-      bottom: 2.7rem;
+      left: 50%;
+      margin-left: -0.2rem;
+      bottom: 2.15rem;
       animation:myfirst 1s infinite;
       animation-direction:alternate;
       -webkit-animation-direction:alternate;
     }
+    .btn-arrow img
+    {
+      width:0.45rem;
+      height: 0.3rem; 
+    }
     @keyframes myfirst
     {
-      0%   {opacity:1; left: 4.5rem;bottom: 2.7rem;}
+      0%   {opacity:1; left: 50%;bottom: 2.15rem;}
       /*25%  {opacity:0.4; left: 4.6rem;bottom: 2.75rem;}*/
-      50%  {opacity:0.6; left: 4.5rem;bottom: 2.8rem;}
+      50%  {opacity:0.6; left: 50%;bottom: 2.25rem;}
       /*75%  {opacity:0.8; left: 4.6rem;bottom: 2.9rem;}*/
-      100% {opacity:0.2; left: 4.5rem;bottom: 2.9rem;}
+      100% {opacity:0.2; left: 50%;bottom: 2.35rem;}
     }
     .item-detail{
         margin-top: 2.133333rem;
         width: 100%;
+        margin-bottom: 15.5%;
     }
     .item-detail img{
         width: 100%;

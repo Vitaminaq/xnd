@@ -395,6 +395,7 @@ export default {
               setTimeout(function () {
                 that.noaddtoast2 = false
               }, 1000)
+              this.refresh()
             }.bind(this), function (err) {
               console.log(err)
               for (var j = 0; j < this.items.length; j++) {
@@ -863,7 +864,7 @@ ul .right
 #mergecontent
 {
   position: fixed;
-  bottom: 1.6222rem;
+  bottom: 1.59999rem;
   font-size: 0.4rem;
   background-color: white; 
   width: 100%;
